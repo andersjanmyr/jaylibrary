@@ -1,0 +1,24 @@
+<h1>Listing borrowings</h1>
+
+<table>
+  <tr>
+    <th>Book copy</th>
+    <th>Library</th>
+    <th>User</th>
+  </tr>
+
+<% @borrowings.each do |borrowing| %>
+  <tr>
+    <td><%=h borrowing.book_copy %></td>
+    <td><%=h borrowing.library %></td>
+    <td><%=h borrowing.user %></td>
+    <td><%= link_to 'Show', borrowing %></td>
+    <td><%= link_to 'Edit', edit_borrowing_path(borrowing) %></td>
+    <td><%= link_to 'Destroy', borrowing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New borrowing', new_borrowing_path %>

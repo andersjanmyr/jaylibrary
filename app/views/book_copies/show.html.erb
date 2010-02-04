@@ -1,0 +1,13 @@
+<p>
+  <b>Instances:</b>
+  <%=h @book_copy.instances %>
+</p>
+
+<p>
+  <b>Book:</b>
+  <%=h @book_copy.book %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_copy_path(@book_copy) %> |
+<%= link_to 'Back', book_copies_path %>

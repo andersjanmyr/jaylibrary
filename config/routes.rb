@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :borrowings
+
+  map.resources :book_copies
+
+  map.resources :users
+
+  map.resources :libraries
+
+  map.resources :books
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

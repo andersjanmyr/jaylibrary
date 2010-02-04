@@ -1,0 +1,20 @@
+<h1>Editing book_copy</h1>
+
+<% form_for(@book_copy) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :instances %><br />
+    <%= f.text_field :instances %>
+  </p>
+  <p>
+    <%= f.label :book %><br />
+    <%= f.text_field :book %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @book_copy %> |
+<%= link_to 'Back', book_copies_path %>

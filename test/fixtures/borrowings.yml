@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  book_copy: 
+  library: 
+  user: 
+
+two:
+  book_copy: 
+  library: 
+  user: 

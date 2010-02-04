@@ -1,0 +1,22 @@
+<h1>Listing book_copies</h1>
+
+<table>
+  <tr>
+    <th>Instances</th>
+    <th>Book</th>
+  </tr>
+
+<% @book_copies.each do |book_copy| %>
+  <tr>
+    <td><%=h book_copy.instances %></td>
+    <td><%=h book_copy.book %></td>
+    <td><%= link_to 'Show', book_copy %></td>
+    <td><%= link_to 'Edit', edit_book_copy_path(book_copy) %></td>
+    <td><%= link_to 'Destroy', book_copy, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New book_copy', new_book_copy_path %>

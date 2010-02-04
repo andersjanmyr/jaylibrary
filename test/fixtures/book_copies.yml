@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  instances: 1
+  book: 
+
+two:
+  instances: 1
+  book: 
