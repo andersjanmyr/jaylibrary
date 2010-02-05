@@ -1,6 +1,6 @@
-log/*.log
 tmp/**/*
 doc/api
 doc/app
 .idea
-
+db/*.sqlite3
+log/*.log
