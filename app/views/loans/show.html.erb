@@ -1,0 +1,20 @@
+<% title "Loan" %>
+
+<p>
+  <strong>Book Copy:</strong>
+  <%=h @loan.book_copy_id %>
+</p>
+<p>
+  <strong>Library:</strong>
+  <%=h @loan.library_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @loan.user_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_loan_path(@loan) %> |
+  <%= link_to "Destroy", @loan, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", loans_path %>
+</p>

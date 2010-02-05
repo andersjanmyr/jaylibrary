@@ -1,16 +1,8 @@
-<h1>Editing library</h1>
+<% title "Edit Library" %>
 
-<% form_for(@library) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'form' %>
 
-  <p>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @library %> |
-<%= link_to 'Back', libraries_path %>
+<p>
+  <%= link_to "Show", @library %> |
+  <%= link_to "View All", libraries_path %>
+</p>

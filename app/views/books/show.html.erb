@@ -1,23 +1,24 @@
+<% title "Book" %>
+
 <p>
-  <b>Isbn:</b>
+  <strong>Isbn:</strong>
   <%=h @book.isbn %>
 </p>
-
 <p>
-  <b>Title:</b>
+  <strong>Title:</strong>
   <%=h @book.title %>
 </p>
-
 <p>
-  <b>Description:</b>
+  <strong>Description:</strong>
   <%=h @book.description %>
 </p>
-
 <p>
-  <b>Author:</b>
+  <strong>Author:</strong>
   <%=h @book.author %>
 </p>
 
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<p>
+  <%= link_to "Edit", edit_book_path(@book) %> |
+  <%= link_to "Destroy", @book, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", books_path %>
+</p>

@@ -1,5 +1,33 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :borrowings
+  map.resources :book_copies
+
+  map.resources :books
+
+  map.resources :loans
+
+  map.resources :libraries
+
+  map.resources :users
+
+  map.resources :users
+
+  map.resources :users
+
+  map.resources :users
+
+  map.resources :loans
+
+  map.resources :loans
+
+  map.resources :loans
+
+  map.resources :libraries
+
+  map.resources :book_copies
+
+  map.resources :books
+
+  map.resources :loans
 
   map.resources :book_copies
 

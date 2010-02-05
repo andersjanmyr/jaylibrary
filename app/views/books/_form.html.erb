@@ -1,0 +1,10 @@
+<% semantic_form_for @book do |form| %>
+  <% form.inputs do %>
+    <%= form.input :isbn, :label => 'Isbn' %>
+    <%= form.input :title, :label => 'Title' %>
+    <%= form.input :description, :label => 'Description' %>
+    <%= form.input :author, :label => 'Author' %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>
+

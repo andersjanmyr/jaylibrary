@@ -1,20 +1,8 @@
-<h1>Editing book_copy</h1>
+<% title "Edit Book Copy" %>
 
-<% form_for(@book_copy) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'form' %>
 
-  <p>
-    <%= f.label :instances %><br />
-    <%= f.text_field :instances %>
-  </p>
-  <p>
-    <%= f.label :book %><br />
-    <%= f.text_field :book %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @book_copy %> |
-<%= link_to 'Back', book_copies_path %>
+<p>
+  <%= link_to "Show", @book_copy %> |
+  <%= link_to "View All", book_copies_path %>
+</p>

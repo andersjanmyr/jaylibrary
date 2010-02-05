@@ -18,14 +18,6 @@ ActiveRecord::Schema.define(:version => 20100204220211) do
     t.datetime "updated_at"
   end
 
-  create_table "book_descriptions", :force => true do |t|
-    t.string   "isbn"
-    t.string   "title"
-    t.string   "author"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "books", :force => true do |t|
     t.string   "isbn"
     t.string   "title"
@@ -35,16 +27,16 @@ ActiveRecord::Schema.define(:version => 20100204220211) do
     t.datetime "updated_at"
   end
 
-  create_table "borrowings", :force => true do |t|
-    t.integer  "book_copy_id"
-    t.integer  "library_id"
-    t.integer  "user_id"
+  create_table "libraries", :force => true do |t|
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "libraries", :force => true do |t|
-    t.string   "location"
+  create_table "loans", :force => true do |t|
+    t.integer  "book_copy_id"
+    t.integer  "library_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

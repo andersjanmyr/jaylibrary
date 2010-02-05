@@ -1,13 +1,16 @@
+<% title "Book Copy" %>
+
 <p>
-  <b>Instances:</b>
+  <strong>Instances:</strong>
   <%=h @book_copy.instances %>
 </p>
-
 <p>
-  <b>Book:</b>
-  <%=h @book_copy.book %>
+  <strong>Book:</strong>
+  <%=h @book_copy.book_id %>
 </p>
 
-
-<%= link_to 'Edit', edit_book_copy_path(@book_copy) %> |
-<%= link_to 'Back', book_copies_path %>
+<p>
+  <%= link_to "Edit", edit_book_copy_path(@book_copy) %> |
+  <%= link_to "Destroy", @book_copy, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", book_copies_path %>
+</p>

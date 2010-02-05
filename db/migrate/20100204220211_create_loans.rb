@@ -1,6 +1,6 @@
-class CreateBorrowings < ActiveRecord::Migration
+class CreateLoans < ActiveRecord::Migration
   def self.up
-    create_table :borrowings do |t|
+    create_table :loans do |t|
       t.references :book_copy
       t.references :library
       t.references :user
@@ -10,6 +10,6 @@ class CreateBorrowings < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :borrowings
+    drop_table :loans
   end
 end
