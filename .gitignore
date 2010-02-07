@@ -4,3 +4,5 @@ doc/app
 .idea
 db/*.sqlite3
 log/*.log
+.DS_Store
+*~

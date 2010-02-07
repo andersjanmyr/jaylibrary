@@ -1,8 +1,32 @@
 body {
   background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  font-family: Helvetica, Arial;
+  font-size: 11pt;
 }
+
+h1 {
+  font-family : Georgia;
+  color: #4FB4E2;
+}
+
+#logoPart {
+  text-align: right;
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+
+#jayLogoPart {
+  font-family: Helvetica;
+  font-size:14pt;
+  color: #4FB4E2;
+}
+
+#libraryLogoPart {
+  font-family: Helvetica;
+  font-size:14pt;
+  color: #000;
+}	
 
 a img {
   border: none;
@@ -25,6 +49,9 @@ a {
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  background-image:url('../images/library-background.png');
+  background-repeat: no-repeat;
+  background-position: right top;
 }
 
 #flash_notice, #flash_error {
