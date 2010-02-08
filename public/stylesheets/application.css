@@ -10,10 +10,7 @@ h1 {
 }
 
 .logo {
-}
-
-.large {
-    font-size: 2em;
+    text-align: right;
     padding: 2em 0;
 }
 
@@ -21,15 +18,18 @@ h1 {
     width: 75%;
     margin: 0 auto;
     font-size: 1.2em;
-    text-align: right;
+}
+
+.large {
+    font-size: 2em;
     padding: 2em 0;
 }
 
-.jayLogoPart {
+.logo-jay {
     color: #4FB4E2;
 }
 
-.libraryLogoPart {
+.logo-library {
     color: #000;
 }
 
