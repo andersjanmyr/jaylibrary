@@ -4,10 +4,37 @@
 }
 
 #search-field {
-    font-size: 1.3em;
+    font-size: 1.2em;
     width: 12em;
 }
 
 #search-button {
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
+
+#results-panel  {
+    margin: 1em 0;
+    height: 80%;
+    clear: both;
+}
+
+#results-panel li {
+    list-style-type: none;
+    padding: .2em .1em;
+    clear: both;
+}
+
+
+.book-image {
+    float: left;
+}
+
+.book-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.book-author {
+
+}
+

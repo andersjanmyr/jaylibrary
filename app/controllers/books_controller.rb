@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.search(params[:q])
     respond_to do |format|
       format.html
       format.json { render :json => @books}
