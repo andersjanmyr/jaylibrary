@@ -4,8 +4,26 @@ jQuery.ajaxSetup({
     }
 });
 
+function el(name, attributes) {
+    var element = new Element(name, attributes);
+    var children = [];
+    if (arguments.length > 2)
+        children = $A(arguments).slice(2).flatten().toArray();
+    children.each(function(child) {
+        if (typeof child == "string") {
+            if (!child.startsWith("<"))
+                child = document.createTextNode(child);
+        }
+        if (typeof child == "string")
+            element.innerHTML = child;
+        else
+            element.appendChild(child);
+    });
+    return element;
+}
+
 function createBookItem(book) {
-    return '<li>' + book.title + '</li>';
+    return el('li', null, book.title);
 }
 
 jQuery(document).ready(function() {
