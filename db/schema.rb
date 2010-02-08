@@ -12,7 +12,6 @@
 ActiveRecord::Schema.define(:version => 20100204220211) do
 
   create_table "book_copies", :force => true do |t|
-    t.integer  "instances"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20100204220211) do
   end
 
   create_table "libraries", :force => true do |t|
-    t.string   "location"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

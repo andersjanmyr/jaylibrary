@@ -1,7 +1,7 @@
 class CreateLibraries < ActiveRecord::Migration
   def self.up
     create_table :libraries do |t|
-      t.string :location
+      t.string :name
 
       t.timestamps
     end
