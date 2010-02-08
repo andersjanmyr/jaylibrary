@@ -9,6 +9,7 @@
     <script type="text/javascript">
         jQuery.noConflict();
     </script>
+    <script type="text/javascript" src="javascripts/prototype.js"></script>
     <script type="text/javascript" src="javascripts/ria.js"></script>
     <link type="text/css" media="screen" rel="stylesheet" href="/stylesheets/application.css"/>
     <link type="text/css" media="screen" rel="stylesheet" href="/stylesheets/ria.css"/>
@@ -17,7 +18,7 @@
 <div id="container">
     <div id="head">
         <div class="large">
-           <span class="logo-jay">JAY</span><span class="logo-library">LIBRARY</span>
+            <span class="logo-jay">JAY</span><span class="logo-library">LIBRARY</span>
         </div>
 
 
@@ -27,12 +28,13 @@
         </div>
     </div>
     <div id="search-panel">
-        <form id='search-form'action="books">
+        <form id='search-form' action="books">
             <input id="search-field" type="text"/>
             <input id='search-button' type="submit" value="Search"/>
         </form>
-        <div id="result-panel">
-
+        <div id="results-panel">
+            <ul id="search-results">
+            </ul>
         </div>
     </div>
     <div id="user-panel">
@@ -43,7 +45,7 @@
 
 </div>
 <div class="logo small">
-   <span class="logo-jay">JAY</span><span class="logo-library">LIBRARY</span>
+    <span class="logo-jay">JAY</span><span class="logo-library">LIBRARY</span>
 </div>
 
 </body>
