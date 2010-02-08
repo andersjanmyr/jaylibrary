@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20100204220211) do
 
   create_table "loans", :force => true do |t|
     t.integer  "book_copy_id"
-    t.integer  "library_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
