@@ -30,6 +30,7 @@ jQuery(document).ready(function() {
         }
 
         return el('li', null,
+                el('button', {class: 'loan'}, "Borrow"),
                 el('img', {class: 'book-image', src: imageLink()},
                 el('div', {class: 'book-title'}, book.title),
                 el('div', {class: 'book-author'}, book.author))
