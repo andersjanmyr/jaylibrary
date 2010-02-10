@@ -1,6 +1,11 @@
 class LoansController < ApplicationController
   def index
-    @loans = Loan.all
+    if (params[:user_id])
+      user = User.find_by_login params[:user_id]
+      @loans = Loan.find_all_by_user_id(user.id)
+    else
+      @loans = Loan.all
+    end
   end
   
   def show

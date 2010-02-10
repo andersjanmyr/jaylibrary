@@ -1,6 +1,14 @@
+#login-panel {
+    float: right;
+    width: 8em;
+}
 
+#login-field {
+    width: 6em;
+}
 
 #search-panel {
+    clear: both;
 }
 
 #search-field {

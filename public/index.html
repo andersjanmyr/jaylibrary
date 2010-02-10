@@ -25,6 +25,18 @@
         <div id="menu">
         </div>
         <div id="login-panel">
+            <div id="logged-out-panel">
+                <span>Welcome!</span>
+
+                <form id='login-form' action="users">
+                    <input id="login-field" name="login-field"/>
+                    <input id="login-button" type='submit' value="Login"/>
+                </form>
+            </div>
+            <div id="logged-in-panel">
+                <span>Logged in as <span id="logged-in-username">Username</span></span>
+            </div>
+
         </div>
     </div>
     <div id="search-panel">
@@ -41,7 +53,9 @@
     <div class="clear"></div>
     <div id="user-panel">
         <div id="user-menu"></div>
-        <div id="loans"></div>
+        <div id="loan-panel">
+            <ul id="loans"></ul>
+        </div>
         <div id="reviews"></div>
     </div>
 
