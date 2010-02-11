@@ -7,11 +7,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :libraries
 
-  map.resources :users
-
   map.resources :users do |user|
     user.resources :loans
   end
+
+  map.resources :users
+
 
   
   # The priority is based upon order of creation: first created -> highest priority.

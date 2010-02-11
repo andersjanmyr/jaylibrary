@@ -8,7 +8,7 @@
 }
 
 #search-panel {
-    clear: both;
+    float:left;
 }
 
 #search-field {
@@ -23,7 +23,7 @@
 #results-panel  {
     margin: 1em 0;
     height: 80%;
-    clear: both;
+    float: left;
 }
 
 #results-panel li {
@@ -46,3 +46,14 @@
 
 }
 
+.borrow-button {
+    margin: 0 1em;
+}
+
+#user-panel {
+    float: right;
+}
+
+.return-button {
+    margin: 0 1em;
+}

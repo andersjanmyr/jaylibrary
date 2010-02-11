@@ -63,6 +63,7 @@ a {
     background-image: url('../images/library-background.png');
     background-repeat: no-repeat;
     background-position: right top;
+    min-height: 30em;        
 }
 
 #flash_notice, #flash_error {

@@ -6,16 +6,20 @@ class LoansController < ApplicationController
     else
       @loans = Loan.all
     end
+    respond_to do |format|
+      format.html
+      format.json {render :json => "[#{@loans.map {|loan| loan.book_copy.book.to_full_json }.join(',')}]" }
+    end
   end
-  
+
   def show
     @loan = Loan.find(params[:id])
   end
-  
+
   def new
     @loan = Loan.new
   end
-  
+
   def create
     @loan = Loan.new(params[:loan])
     if @loan.save
@@ -25,11 +29,11 @@ class LoansController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @loan = Loan.find(params[:id])
   end
-  
+
   def update
     @loan = Loan.find(params[:id])
     if @loan.update_attributes(params[:loan])
@@ -39,7 +43,7 @@ class LoansController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @loan = Loan.find(params[:id])
     @loan.destroy
