@@ -14,7 +14,10 @@ track of your books.
 ** Reviews
 * Script for loading the data from confluence over to Jaylibrary
 * Function for adding a new book, by loading the book information
-  from an external source, such as amazon.
+  from an external source, such as amazon and isbndn.com.
+* When searching for an ISBN and getting no hits, the user should
+  get an option to add the book to the library. The book information
+  should be fetched from the external source.
 
 == iPhone
 

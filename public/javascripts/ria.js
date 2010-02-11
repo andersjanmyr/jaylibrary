@@ -6,6 +6,8 @@ jQuery.ajaxSetup({
 
 
 jQuery(document).ready(function() {
+    var username;
+
     function el(name, attributes) {
         var element = new Element(name, attributes);
         var children = [];
@@ -24,15 +26,16 @@ jQuery(document).ready(function() {
         return element;
     }
 
-    function createBookItem(book) {
+    function createBookItem(book, buttonType) {
         function imageLink() {
             return 'http://www.amazon.com/thumbnail?' + book.isbn;
         }
 
         return el('li', null,
-                el('img', {class: 'book-image', src: imageLink()},
+                el('img', {class: 'book-image', src: imageLink()}),
                 el('div', {class: 'book-title'}, book.title),
-                el('div', {class: 'book-author'}, book.author))
+                el('span', {class: 'book-author'}, book.author),
+                el('button', {class: buttonType.toLowerCase() + '-button'}, buttonType.capitalize())
                 );
     }
 
@@ -41,11 +44,40 @@ jQuery(document).ready(function() {
             var results = jQuery('#search-results')
             results.empty();
             data.each(function(item) {
-                results.append(createBookItem(item.book));
-            })
+                results.append(createBookItem(item.book, 'borrow'));
+            });
         });
         return false;
-    })
+    });
+
+    jQuery('#login-form').submit(function() {
+//        jQuery.get(jQuery(this).attr('action'), jQuery(this).serialize(), function(data) {
+            username = jQuery('#login-field').val();
+            jQuery('#logged-out-panel').hide();
+            jQuery('#logged-in-panel').show();
+            jQuery('#logged-in-username').text(username);
+            updateLoans(username);
+//        });
+        return false;
+    });
+
+    function updateLoans(username) {
+        var loansUrl = '/users/' + username + '/loans';
+        jQuery.get(loansUrl, function(data) {
+            var loans = jQuery('#loans');
+            loans.empty();
+            data.each(function(item) {
+                loans.append(createBookItem(item.book, 'return'));
+            });
+        });
+    }
+
+    function initPanels() {
+        jQuery('#logged-out-panel').show();
+        jQuery('#logged-in-panel').hide();
+    }
+
+    initPanels();
 
 });
 
