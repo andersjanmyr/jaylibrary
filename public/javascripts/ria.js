@@ -27,12 +27,9 @@ jQuery(document).ready(function() {
     }
 
     function createBookItem(book, buttonType) {
-        function imageLink() {
-            return 'http://www.amazon.com/thumbnail?' + book.isbn;
-        }
 
         return el('li', null,
-                el('img', {class: 'book-image', src: imageLink()}),
+                el('img', {class: 'book-image', src: book.image_url}),
                 el('div', {class: 'book-title'}, book.title),
                 el('span', {class: 'book-author'}, book.author),
                 el('button', {class: buttonType.toLowerCase() + '-button'}, buttonType.capitalize())

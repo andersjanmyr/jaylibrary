@@ -26,15 +26,17 @@
     float: left;
 }
 
-#results-panel li {
+li {
     list-style-type: none;
     padding: .4em .1em;
-    clear: both;
+    border: lightgray ridge 6px;
+    margin: .1em;
 }
 
 
 .book-image {
     float: left;
+    padding: 0 .5em .2em .2em;
 }
 
 .book-title {
