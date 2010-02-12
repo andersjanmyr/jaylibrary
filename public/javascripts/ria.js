@@ -27,22 +27,38 @@ jQuery(document).ready(function() {
     }
 
     function createBookItem(book, buttonType) {
-
         return el('li', null,
-                el('img', {class: 'book-image', src: book.image_url}),
+                el('img', {class: 'book-image', src: book.image_thumbnail_url}),
                 el('div', {class: 'book-title'}, book.title),
                 el('span', {class: 'book-author'}, book.author),
                 el('button', {class: buttonType.toLowerCase() + '-button'}, buttonType.capitalize())
                 );
     }
 
+    function addBookListeners() {
+        jQuery('.borrow-button').click(function(){
+            alert(this);
+        });
+        jQuery('.return-button').click(function(){
+            alert(this);
+        });
+        jQuery('.book-image').mouseover(function() {
+            alert(this);
+        });
+    }
+
+    function updateSearchResults(data) {
+        var results = jQuery('#search-results')
+        results.empty();
+        data.each(function(item) {
+            results.append(createBookItem(item.book, 'borrow'));
+        });
+        addBookListeners();
+    }
+
     jQuery('#search-form').submit(function() {
         jQuery.get(jQuery(this).attr('action'), jQuery(this).serialize(), function(data) {
-            var results = jQuery('#search-results')
-            results.empty();
-            data.each(function(item) {
-                results.append(createBookItem(item.book, 'borrow'));
-            });
+            updateSearchResults(data);
         });
         return false;
     });
@@ -67,12 +83,14 @@ jQuery(document).ready(function() {
                 loans.append(createBookItem(item.book, 'return'));
             });
         });
+        addBookListeners();
     }
 
     function initPanels() {
         jQuery('#logged-out-panel').show();
         jQuery('#logged-in-panel').hide();
     }
+
 
     initPanels();
 
