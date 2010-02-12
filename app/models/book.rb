@@ -2,8 +2,7 @@ class Book < ActiveRecord::Base
   has_many :book_copies
 
   def self.search query
-    self.find(:all,
-              :conditions => ["title like :query or author like :query or isbn like :query",
+    self.where(:conditions => ["title like :query or author like :query or isbn like :query",
                               { :query => "%#{query}%" }])
   end
 
