@@ -1,9 +1,5 @@
 class Book < ActiveRecord::Base
   has_many :book_copies
-  IMAGE_URL_PREFIX = 'http://images.amazon.com/images/P'
-  IMAGE_URL_THUMBNAIL_SUFFIX = '.01._SY64_.jpg'
-  IMAGE_URL_MEDIUM_SUFFIX = '.01.TZZZZZZZ.jpg'
-
 
   def self.search query
     self.find(:all,
@@ -12,11 +8,11 @@ class Book < ActiveRecord::Base
   end
 
   def image_thumbnail_url
-    "#{IMAGE_URL_PREFIX}/#{isbn}#{IMAGE_URL_THUMBNAIL_SUFFIX}"
+    "#{APP_CONFIG[:image_url_prefix]}/#{isbn}#{APP_CONFIG[:image_url_thumbnail_suffix]}"
   end
 
   def image_medium_url
-    "#{IMAGE_URL_PREFIX}/#{isbn}#{IMAGE_URL_MEDIUM_SUFFIX}"
+    "#{APP_CONFIG[:image_url_prefix]}/#{isbn}#{APP_CONFIG[:image_url_medium_suffix]}"
   end
 
   def to_full_json
