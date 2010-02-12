@@ -36,13 +36,13 @@ jQuery(document).ready(function() {
     }
 
     function addBookListeners() {
-        jQuery('.borrow-button').click(function(){
+        jQuery('.borrow-button').unbind('click').click(function(){
             alert(this);
         });
-        jQuery('.return-button').click(function(){
+        jQuery('.return-button').unbind('click').click(function(){
             alert(this);
         });
-        jQuery('.book-image').mouseover(function() {
+        jQuery('.book-image').unbind('mouseover').mouseover(function() {
             alert(this);
         });
     }
@@ -82,8 +82,8 @@ jQuery(document).ready(function() {
             data.each(function(item) {
                 loans.append(createBookItem(item.book, 'return'));
             });
+            addBookListeners();
         });
-        addBookListeners();
     }
 
     function initPanels() {
