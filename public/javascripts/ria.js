@@ -37,9 +37,15 @@ jQuery(document).ready(function() {
 
     function borrowBook(isbn) {
         var borrowUrl = '/loans';
-        jQuery.post(borrowUrl, {user_login: user.login, isbn: isbn}, function(data) {
-            updateLoans(user.login);
-        });
+        if (!user) {
+            alert('You must be logged in to borrow a book!');
+            jQuery('#login-field').focus();
+        }
+        else {
+            jQuery.post(borrowUrl, {user_login: user.login, isbn: isbn}, function(data) {
+                updateLoans(user.login);
+            });
+        }
 
     }
 
@@ -50,11 +56,12 @@ jQuery(document).ready(function() {
     function parentId(el) {
         return jQuery(el).parent().attr('id');
     }
+
     function addBookListeners() {
-        jQuery('.borrow-button').unbind('click').click(function(){
+        jQuery('.borrow-button').unbind('click').click(function() {
             borrowBook(parentId(this));
         });
-        jQuery('.return-button').unbind('click').click(function(){
+        jQuery('.return-button').unbind('click').click(function() {
             returnBook(parentId(this));
         });
         jQuery('.book-image').unbind('mouseover').mouseover(function() {

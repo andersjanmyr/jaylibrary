@@ -23,18 +23,27 @@ class LoansController < ApplicationController
   def create
     user = User.find_by_login params[:user_login]
     copy = BookCopy.first_available params[:isbn]
-    
-    @loan = Loan.new(:user_id => user.id, :book_copy_id => copy.id)
-    if @loan.save
-      respond_to do |format|
-        format.html {
+    if copy
+      @loan = Loan.new(:user_id => user.id, :book_copy_id => copy.id)
+      if @loan.save
+        respond_to do |format|
+          format.html {
             flash[:notice] = "Successfully created loan."
             redirect_to @loan
           }
-        format.json {render :json => @loan, :status => :created, :location => loan_url(@loan)}
+          format.json {render :json => @loan, :status => :created, :location => loan_url(@loan)}
+        end
+      else
+        render :action => 'new'
       end
     else
-      render :action => 'new'
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "No available book to loan."
+          render :action => 'index'
+        }
+        format.json {render :json => 'No book found!'.to_json, :status => :not_found}
+      end
     end
   end
 
