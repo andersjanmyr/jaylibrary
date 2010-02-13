@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :book_copies
+  has_many :loans, :through => :book_copies
 
   def self.search query
     self.find(:all,
@@ -15,15 +16,16 @@ class Book < ActiveRecord::Base
     "#{APP_CONFIG[:image_url_prefix]}/#{isbn}#{APP_CONFIG[:image_url_medium_suffix]}"
   end
 
+  def loans_per_user
+    loans.group_by(&:user_id)  
+  end
+
   def to_full_json
 
     val = self.to_json(
             :include => {
-                    :book_copies => {
-                            :include => {
-                                    :loan => {
-                                            :only => :user_id }},
-                            :only => :id }},
+                    :loans => {
+                            :only => :user_id }},
             :methods => [:image_thumbnail_url, :image_medium_url],
             :only => [:title, :author, :isbn])
     val
