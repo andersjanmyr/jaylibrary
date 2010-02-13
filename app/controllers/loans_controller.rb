@@ -21,10 +21,18 @@ class LoansController < ApplicationController
   end
 
   def create
-    @loan = Loan.new(params[:loan])
+    user = User.find_by_login params[:user_login]
+    copy = BookCopy.first_available params[:isbn]
+    
+    @loan = Loan.new(:user_id => user.id, :book_copy_id => copy.id)
     if @loan.save
-      flash[:notice] = "Successfully created loan."
-      redirect_to @loan
+      respond_to do |format|
+        format.html {
+            flash[:notice] = "Successfully created loan."
+            redirect_to @loan
+          }
+        format.json {render :json => @loan, :status => :created, :location => loan_url(@loan)}
+      end
     else
       render :action => 'new'
     end

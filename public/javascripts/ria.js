@@ -35,8 +35,11 @@ jQuery(document).ready(function() {
                 );
     }
 
-    function borrowBook(book) {
-        alert(book);
+    function borrowBook(isbn) {
+        var borrowUrl = '/loans';
+        jQuery.post(borrowUrl, {user_login: user.login, isbn: isbn}, function(data) {
+            updateLoans(user.login);
+        });
 
     }
 
