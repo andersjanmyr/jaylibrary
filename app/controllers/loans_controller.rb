@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   def index
-    if (params[:user_id])
-      user = User.find_by_login params[:user_id]
+    if (params[:login])
+      user = User.find_by_login params[:login]
       @loans = Loan.find_all_by_user_id(user.id)
     else
       @loans = Loan.all
