@@ -7,8 +7,6 @@ track of your books.
 == Web
 * Add authentication, with authlogic
 * Add login panel to the admin interface.
-* Add login panel to the RIA interface.
-* Add user information to the RIA interface/
 ** Current loans
 ** Read books, old loans
 ** Reviews
@@ -18,6 +16,8 @@ track of your books.
 * When searching for an ISBN and getting no hits, the user should
   get an option to add the book to the library. The book information
   should be fetched from the external source.
+* Error handling
+
 
 == iPhone
 

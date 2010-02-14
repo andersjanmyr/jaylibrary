@@ -6,7 +6,7 @@ jQuery.ajaxSetup({
 
 
 jQuery(document).ready(function() {
-    var username;
+    var user = null;
 
     function el(name, attributes) {
         var element = new Element(name, attributes);
@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
     }
 
     function createBookItem(book, buttonType) {
-        return el('li', null,
+        return el('li', {id: book.isbn},
                 el('img', {class: 'book-image', src: book.image_thumbnail_url}),
                 el('div', {class: 'book-title'}, book.title),
                 el('span', {class: 'book-author'}, book.author),
@@ -35,12 +35,34 @@ jQuery(document).ready(function() {
                 );
     }
 
+    function borrowBook(isbn) {
+        var borrowUrl = '/loans';
+        if (!user) {
+            alert('You must be logged in to borrow a book!');
+            jQuery('#login-field').focus();
+        }
+        else {
+            jQuery.post(borrowUrl, {user_login: user.login, isbn: isbn}, function(data) {
+                updateLoans(user.login);
+            });
+        }
+
+    }
+
+    function returnBook() {
+        alert(book);
+    }
+
+    function parentId(el) {
+        return jQuery(el).parent().attr('id');
+    }
+
     function addBookListeners() {
-        jQuery('.borrow-button').unbind('click').click(function(){
-            alert(this);
+        jQuery('.borrow-button').unbind('click').click(function() {
+            borrowBook(parentId(this));
         });
-        jQuery('.return-button').unbind('click').click(function(){
-            alert(this);
+        jQuery('.return-button').unbind('click').click(function() {
+            returnBook(parentId(this));
         });
         jQuery('.book-image').unbind('mouseover').mouseover(function() {
             alert(this);
@@ -64,13 +86,15 @@ jQuery(document).ready(function() {
     });
 
     jQuery('#login-form').submit(function() {
-//        jQuery.get(jQuery(this).attr('action'), jQuery(this).serialize(), function(data) {
-            username = jQuery('#login-field').val();
+        var username = jQuery('#login-field').val();
+        var loginUrl = '/users/' + username;
+        jQuery.get(loginUrl, function(data) {
+            user = data.user;
             jQuery('#logged-out-panel').hide();
             jQuery('#logged-in-panel').show();
-            jQuery('#logged-in-username').text(username);
-            updateLoans(username);
-//        });
+            jQuery('#logged-in-username').text(user.name);
+            updateLoans(user.login);
+        });
         return false;
     });
 
