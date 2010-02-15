@@ -6,17 +6,19 @@ track of your books.
 
 == Web
 * Add authentication, with authlogic
-* Add login panel to the admin interface.
-** Current loans
-** Read books, old loans
-** Reviews
+* Error handling
+* Back button and history handling.
+* Return book
+* Mark available books in different color
+* Show expanded book view, with all loans, etc
+* Read books, old loans
+* Reviews
 * Script for loading the data from confluence over to Jaylibrary
 * Function for adding a new book, by loading the book information
   from an external source, such as amazon and isbndn.com.
 * When searching for an ISBN and getting no hits, the user should
   get an option to add the book to the library. The book information
   should be fetched from the external source.
-* Error handling
 
 
 == iPhone
