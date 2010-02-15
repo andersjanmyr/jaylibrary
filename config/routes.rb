@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :libraries
 
   map.resources :users do |user|
-    user.resources :loans, :path_prefix => '/users/:login'
+    user.resources :loans
   end
 
 

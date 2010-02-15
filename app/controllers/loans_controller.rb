@@ -1,7 +1,10 @@
 class LoansController < ApplicationController
+
+
   def index
-    if (params[:login])
-      user = User.find_by_login params[:login]
+    user_id_or_login = params[:user_id]
+    if (user_id_or_login)
+      user = User.find_by_id_or_login(user_id_or_login)
       @loans = Loan.find_all_by_user_id(user.id)
     else
       @loans = Loan.all
@@ -24,7 +27,7 @@ class LoansController < ApplicationController
   end
 
   def create
-    user = User.find_by_login params[:user_login]
+    user = User.find_by_id_or_login(params[:user_id])
     copy = BookCopy.first_available params[:isbn]
     if copy
       @loan = Loan.new(:user_id => user.id, :book_copy_id => copy.id)

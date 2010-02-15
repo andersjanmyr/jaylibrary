@@ -42,8 +42,8 @@ jQuery(document).ready(function() {
             jQuery('#login-field').focus();
         }
         else {
-            jQuery.post(borrowUrl, {user_login: user.login, isbn: isbn}, function(data) {
-                updateLoans(user.login);
+            jQuery.post(borrowUrl, {user_id: user.id, isbn: isbn}, function(data) {
+                updateLoans(user.id);
             });
         }
 
@@ -93,7 +93,7 @@ jQuery(document).ready(function() {
             jQuery('#logged-out-panel').hide();
             jQuery('#logged-in-panel').show();
             jQuery('#logged-in-username').text(user.name);
-            updateLoans(user.login);
+            updateLoans(user.id);
         });
         return false;
     });
