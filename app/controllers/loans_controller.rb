@@ -8,7 +8,10 @@ class LoansController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => "[#{@loans.map {|loan| loan.book_copy.book.to_full_json }.join(',')}]" }
+      format.json {
+        books = @loans.map {|loan| loan.book_copy.book}
+        books.uniq!
+        render :json => Book.to_full_json(books)}
     end
   end
 

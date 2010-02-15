@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     @books = Book.search(params[:q])
     respond_to do |format|
       format.html
-      format.json {render :json => "[#{@books.map {|book| book.to_full_json }.join(',')}]" }
+      format.json {render :json => Book.to_full_json(@books) }
     end
   end
   

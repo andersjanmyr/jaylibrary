@@ -30,4 +30,8 @@ class Book < ActiveRecord::Base
             :only => [:title, :author, :isbn])
     val
   end
+
+  def self.to_full_json books
+    "[#{books.map {|book| book.to_full_json }.join(',')}]"
+  end
 end
