@@ -1,14 +1,13 @@
 <% title "Book Copy" %>
 
 <p>
-  <strong>Instances:</strong>
-  <%=h @book_copy.instances %>
+  <strong>Book:</strong>
+  <%= link_to @book_copy.book.title, book_path(@book_copy.book) %>
 </p>
 <p>
-  <strong>Book:</strong>
-  <%=h @book_copy.book_id %>
+  <strong>Belongs to library:</strong>
+  <%= if @book_copy.library then link_to @book_copy.library, library_path(@book_copy.library) end %>
 </p>
-
 <p>
   <%= link_to "Edit", edit_book_copy_path(@book_copy) %> |
   <%= link_to "Destroy", @book_copy, :confirm => 'Are you sure?', :method => :delete %> |

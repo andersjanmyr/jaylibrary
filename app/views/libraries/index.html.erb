@@ -6,7 +6,7 @@
   </tr>
   <% for library in @libraries %>
     <tr>
-      <td><%=h library.location %></td>
+      <td><%=h library.name %></td>
       <td><%= link_to "Show", library %></td>
       <td><%= link_to "Edit", edit_library_path(library) %></td>
       <td><%= link_to "Destroy", library, :confirm => 'Are you sure?', :method => :delete %></td>

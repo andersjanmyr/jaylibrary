@@ -2,13 +2,23 @@
 
 <table>
   <tr>
-    <th>Instances</th>
     <th>Book</th>
+    <th>Library</th>
+    <th>Loaned by user</th>
   </tr>
   <% for book_copy in @book_copies %>
     <tr>
-      <td><%=h book_copy.instances %></td>
-      <td><%=h book_copy.book_id %></td>
+      <td><%=h book_copy.book.title %></td>
+      <td>
+        <% if !book_copy.library.blank? %>
+        <%=h book_copy.library.name %>
+        <%end%>
+      </td>
+      <td>
+        <% if !book_copy.loan.blank? %>
+        <%=h book_copy.loan.user.name %>
+        <%end%>
+      </td>
       <td><%= link_to "Show", book_copy %></td>
       <td><%= link_to "Edit", edit_book_copy_path(book_copy) %></td>
       <td><%= link_to "Destroy", book_copy, :confirm => 'Are you sure?', :method => :delete %></td>

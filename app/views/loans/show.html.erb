@@ -2,15 +2,11 @@
 
 <p>
   <strong>Book Copy:</strong>
-  <%=h @loan.book_copy_id %>
-</p>
-<p>
-  <strong>Library:</strong>
-  <%=h @loan.library_id %>
+  <%=h @loan.book_copy.book.title %>
 </p>
 <p>
   <strong>User:</strong>
-  <%=h @loan.user_id %>
+  <%=h @loan.user.name %>
 </p>
 
 <p>

@@ -1,7 +1,7 @@
 <% semantic_form_for @book_copy do |form| %>
   <% form.inputs do %>
-    <%= form.input :instances, :label => 'Instances' %>
-    <%= form.input :book_id, :label => 'Book' %>
+    <%= form.input :book, :label => 'Book' %>
+    <%= form.input :library, :label => 'Library' %>
   <% end %>
   <%= form.buttons %>
 <% end %>

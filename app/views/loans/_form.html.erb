@@ -1,8 +1,7 @@
 <% semantic_form_for @loan do |form| %>
   <% form.inputs do %>
-    <%= form.input :book_copy_id, :label => 'Book Copy' %>
-    <%= form.input :library_id, :label => 'Library' %>
-    <%= form.input :user_id, :label => 'User' %>
+    <%= form.input :book_copy, :label => 'Book copy' %>
+    <%= form.input :user, :label => 'User' %>
   <% end %>
   <%= form.buttons %>
 <% end %>
