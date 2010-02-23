@@ -68,9 +68,15 @@ class LoansController < ApplicationController
   end
 
   def destroy
-    @loan = Loan.find(params[:id])
-    @loan.destroy
-    flash[:notice] = "Successfully destroyed loan."
-    redirect_to loans_url
+    user = User.find_by_id_or_login(params[:user_id])
+    @loan = Loan.first_by_user_id_and_isbn user.id, params[:isbn]
+    @loan.destroy if @loan
+    respond_to do |format|
+      format.html {
+        flash[:notice] = "Successfully destroyed loan."
+        redirect_to loans_url
+      }
+      format.json {render :json => @loan, :status => :ok}
+    end
   end
 end

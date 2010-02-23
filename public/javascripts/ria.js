@@ -36,12 +36,12 @@ jQuery(document).ready(function() {
     }
 
     function borrowBook(isbn) {
-        var borrowUrl = '/loans';
         if (!user) {
             alert('You must be logged in to borrow a book!');
             jQuery('#login-field').focus();
         }
         else {
+            var borrowUrl = '/loans';
             jQuery.post(borrowUrl, {user_id: user.id, isbn: isbn}, function(data) {
                 updateLoans(user.id);
             });
@@ -49,23 +49,26 @@ jQuery(document).ready(function() {
 
     }
 
-    function returnBook() {
-        alert(book);
+    function returnBook(isbn) {
+        var returnUrl = '/loans/destroy';        
+        jQuery.post(returnUrl, {user_id: user.id, isbn: isbn}, function(data) {
+            updateLoans(user.id);
+        });
     }
 
     function parentId(el) {
         return jQuery(el).parent().attr('id');
     }
 
-    function addBookListeners() {
-        jQuery('.borrow-button').unbind('click').click(function() {
+    function initListeners() {
+        jQuery('.borrow-button').live('click', function() {
             borrowBook(parentId(this));
         });
-        jQuery('.return-button').unbind('click').click(function() {
+        jQuery('.return-button').live('click', function() {
             returnBook(parentId(this));
         });
-        jQuery('.book-image').unbind('mouseover').mouseover(function() {
-            alert(this);
+        jQuery('.book-image').live('mouseover', function() {
+
         });
     }
 
@@ -75,8 +78,7 @@ jQuery(document).ready(function() {
         data.each(function(item) {
             results.append(createBookItem(item.book, 'borrow'));
         });
-        addBookListeners();
-    }
+    }   
 
     jQuery('#search-form').submit(function() {
         jQuery.get(jQuery(this).attr('action'), jQuery(this).serialize(), function(data) {
@@ -106,7 +108,6 @@ jQuery(document).ready(function() {
             data.each(function(item) {
                 loans.append(createBookItem(item.book, 'return'));
             });
-            addBookListeners();
         });
     }
 
@@ -117,6 +118,6 @@ jQuery(document).ready(function() {
 
 
     initPanels();
-
+    initListeners();
 });
 
