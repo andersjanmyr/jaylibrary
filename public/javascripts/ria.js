@@ -85,6 +85,15 @@ jQuery(document).ready(function() {
         return jQuery(el).parent().attr('id');
     }
 
+    function logout() {
+        user = null;
+        jQuery('#logged-out-panel').show();
+        jQuery('#logged-in-panel').hide();
+        jQuery('#logged-in-username').text('');
+        jQuery('#loans').empty();
+        return user;
+    }
+
     function initListeners() {
         jQuery('.borrow-button').live('click', function() {
             borrowBook(parentId(this));
@@ -95,6 +104,9 @@ jQuery(document).ready(function() {
         jQuery('.book-image').live('mouseover', function() {
 
         });
+        jQuery('#logout-button').click(function() {
+            logout();
+        })
     }
 
     function updateSearchResults(data) {
@@ -113,9 +125,14 @@ jQuery(document).ready(function() {
     });
 
     jQuery('#login-form').submit(function() {
+        jQuery('#login-error').hide();
         var username = jQuery('#login-field').val();
         var loginUrl = '/users/' + username;
         jQuery.get(loginUrl, function(data) {
+            if (!data || !data.user) {
+                jQuery('#login-error').show();
+                return
+            }
             user = data.user;
             jQuery('#logged-out-panel').hide();
             jQuery('#logged-in-panel').show();
@@ -139,6 +156,7 @@ jQuery(document).ready(function() {
     function initPanels() {
         jQuery('#logged-out-panel').show();
         jQuery('#logged-in-panel').hide();
+        jQuery('#login-error').hide();
     }
 
 
