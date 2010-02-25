@@ -16,8 +16,16 @@ class Book < ActiveRecord::Base
     "#{APP_CONFIG[:image_url_prefix]}/#{isbn}#{APP_CONFIG[:image_url_medium_suffix]}"
   end
 
-  def loans_per_user
-    loans.group_by(&:user_id)  
+  def loan_count
+    loans.count
+  end
+
+  def book_copy_count
+    book_copies.count
+  end
+
+  def available
+    book_copy_count > loan_count
   end
 
   def to_full_json
@@ -26,7 +34,7 @@ class Book < ActiveRecord::Base
             :include => {
                     :loans => {
                             :only => :user_id }},
-            :methods => [:image_thumbnail_url, :image_medium_url],
+            :methods => [:image_thumbnail_url, :image_medium_url, :book_copy_count, :loan_count, :available ],
             :only => [:title, :author, :isbn])
     val
   end

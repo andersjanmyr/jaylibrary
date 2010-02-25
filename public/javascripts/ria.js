@@ -26,10 +26,14 @@ jQuery(document).ready(function() {
         return element;
     }
 
+    function countDisplay(book) {
+        return '(' + book.loan_count + '/' + book.book_copy_count + ')';
+    }
+
     function createBookItem(book, buttonType) {
-        return el('li', {id: book.isbn},
+        return el('li', {id: book.isbn, class: book.available ? 'available' : 'unavailable'},
                 el('img', {class: 'book-image', src: book.image_thumbnail_url}),
-                el('div', {class: 'book-title'}, book.title),
+                el('div', {class: 'book-title'}, book.title + ' ' + countDisplay(book)),
                 el('span', {class: 'book-author'}, book.author),
                 el('button', {class: buttonType.toLowerCase() + '-button'}, buttonType.capitalize())
                 );

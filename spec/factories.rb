@@ -6,7 +6,6 @@ Factory.define :book do |b|
 end
 
 Factory.define :book_copy do |b|
-  b.amount '1'
   b.book {|b| b.association(:book) }
 
 end
