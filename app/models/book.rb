@@ -24,10 +24,6 @@ class Book < ActiveRecord::Base
     book_copies.count
   end
 
-  def available
-    book_copy_count > loan_count
-  end
-
   def to_full_json
 
     val = self.to_json(

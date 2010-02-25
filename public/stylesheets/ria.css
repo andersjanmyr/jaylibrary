@@ -31,10 +31,13 @@ li {
     border: lightgray ridge 6px;
     margin: .1em;
     height: 64px;
+}
+
+#search-results li.unavailable {
     background-color: lightsalmon;
 }
 
-li.available {
+#search-results li.available {
     background-color: lightgreen;
 }
 .book-image {

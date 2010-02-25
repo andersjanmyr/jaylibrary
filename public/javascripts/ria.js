@@ -26,17 +26,36 @@ jQuery(document).ready(function() {
         return element;
     }
 
-    function countDisplay(book) {
-        return '(' + book.loan_count + '/' + book.book_copy_count + ')';
+    function available(book) {
+        return book.loan_count < book.book_copy_count;
     }
 
-    function createBookItem(book, buttonType) {
-        return el('li', {id: book.isbn, class: book.available ? 'available' : 'unavailable'},
+    function userLoanCount(book, userId) {
+        var userLoans = book.loans.select(function(l) {
+            return userId == l.user_id;
+        });
+        return userLoans.size();
+    }
+    
+    function countDisplay(book, buttonType, userId) {
+        if (buttonType.toLowerCase() == 'borrow')
+            return '(' + book.loan_count + '/' + book.book_copy_count + ')';
+        else
+            return '(' + userLoanCount(book, userId) + ')';
+    }
+
+    function createBookItem(book, buttonType, userId) {
+        return el('li', {id: book.isbn, class: available(book) ? 'available' : 'unavailable'},
                 el('img', {class: 'book-image', src: book.image_thumbnail_url}),
-                el('div', {class: 'book-title'}, book.title + ' ' + countDisplay(book)),
+                el('div', {class: 'book-title'}, book.title),
                 el('span', {class: 'book-author'}, book.author),
+                el('span', {class: 'book-count'}, countDisplay(book, buttonType, userId)),
                 el('button', {class: buttonType.toLowerCase() + '-button'}, buttonType.capitalize())
                 );
+    }
+
+    function updateSearch() {
+        jQuery('#search-form').submit();
     }
 
     function borrowBook(isbn) {
@@ -48,15 +67,17 @@ jQuery(document).ready(function() {
             var borrowUrl = '/loans';
             jQuery.post(borrowUrl, {user_id: user.id, isbn: isbn}, function(data) {
                 updateLoans(user.id);
+                updateSearch();
             });
         }
 
     }
 
     function returnBook(isbn) {
-        var returnUrl = '/loans/destroy';        
+        var returnUrl = '/loans/destroy';
         jQuery.post(returnUrl, {user_id: user.id, isbn: isbn}, function(data) {
             updateLoans(user.id);
+            updateSearch();
         });
     }
 
@@ -82,7 +103,7 @@ jQuery(document).ready(function() {
         data.each(function(item) {
             results.append(createBookItem(item.book, 'borrow'));
         });
-    }   
+    }
 
     jQuery('#search-form').submit(function() {
         jQuery.get(jQuery(this).attr('action'), jQuery(this).serialize(), function(data) {
@@ -104,13 +125,13 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    function updateLoans(username) {
-        var loansUrl = '/users/' + username + '/loans';
+    function updateLoans(userId) {
+        var loansUrl = '/users/' + userId + '/loans';
         jQuery.get(loansUrl, function(data) {
             var loans = jQuery('#loans');
             loans.empty();
             data.each(function(item) {
-                loans.append(createBookItem(item.book, 'return'));
+                loans.append(createBookItem(item.book, 'return', userId));
             });
         });
     }
